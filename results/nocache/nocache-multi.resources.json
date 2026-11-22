@@ -1,0 +1,16 @@
+{
+  "HostConfig": {
+    "MemorySwap": 1073741824,
+    "CpusetCpus": "2",
+    "Memory": 1073741824
+  },
+  "Config": {
+    "Image": "one-nio-rocks-bench:nocache",
+    "Env": [
+      "BENCH_GATE=/tmp/bench-go",
+      "BENCH_CACHE_BYTES=805306368",
+      "BENCH_STATS=1",
+      "LD_PRELOAD=/opt/rocks-native/uring_enable.so:/usr/lib/x86_64-linux-gnu/liburing.so.2"
+    ]
+  }
+}

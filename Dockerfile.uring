@@ -1,0 +1,17 @@
+FROM one-nio-rocks-bench:1 AS native
+USER root
+RUN apt-get update -qq && apt-get install -y -qq --no-install-recommends g++ make liburing-dev liblz4-dev libzstd-dev libsnappy-dev zlib1g-dev libbz2-dev && rm -rf /var/lib/apt/lists/*
+WORKDIR /native
+RUN curl -fL --retry 3 https://codeload.github.com/facebook/rocksdb/tar.gz/refs/tags/v11.8.1 | tar xz --strip-components=1
+RUN ROCKSDB_USE_IO_URING=1 make -j16 rocksdbjava DEBUG_LEVEL=0 DISABLE_WARNING_AS_ERROR=1 USE_RTTI=1 PORTABLE=0 && strip java/target/librocksdbjni-linux64.so
+COPY native/uring_enable.cc /uring_enable.cc
+RUN g++ -shared -fPIC -O3 /uring_enable.cc -o /uring_enable.so
+
+FROM one-nio-rocks-bench:1
+RUN apt-get update -qq && apt-get install -y -qq --no-install-recommends liburing2 liblz4-1 libzstd1 libsnappy1v5 libbz2-1.0 && rm -rf /var/lib/apt/lists/*
+COPY src /project/src
+RUN mvn -q -DskipTests package
+COPY --from=native /native/java/target/librocksdbjni-linux64.so /opt/rocks-native/librocksdbjni-linux64.so
+COPY --from=native /uring_enable.so /opt/rocks-native/uring_enable.so
+RUN jar uf /project/target/one-nio-rocksdb-bench-1.0.jar -C /opt/rocks-native librocksdbjni-linux64.so
+ENV LD_PRELOAD=/opt/rocks-native/uring_enable.so:/usr/lib/x86_64-linux-gnu/liburing.so.2
