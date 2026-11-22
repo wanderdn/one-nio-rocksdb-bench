@@ -1,6 +1,6 @@
 # RocksDB без кешей данных: Direct I/O
 
-Дополнение к серии с равным RAM-бюджетом. Все три профиля: общий лимит контейнера 1 ГиБ, swap 0, CPU №2, JDK heap128MiB/SerialGC, одинаковый датасет 4 ГиБ и uniform random поток. 1 млн прогревочных GET и 5 млн измеряемых GET (1000 пакетов по5000). Checksum совпала: -8131224688047484273. OOM не было.
+Дополнение к серии с равным RAM-бюджетом. Все три профиля: общий лимит контейнера 1 ГиБ, swap 0, 1 логический CPU, JDK heap128MiB/SerialGC, одинаковый датасет 4 ГиБ и uniform random поток. 1 млн прогревочных GET и 5 млн измеряемых GET (1000 пакетов по5000). Checksum совпала: -8131224688047484273. OOM не было.
 
 Отключены native block cache и row cache, fill_cache=false; use_direct_reads=true, allow_mmap_reads=false. В конце каждого замера blockBytes=0, rowBytes=0. Индекс/Bloom/table-reader metadata могут оставаться в RAM: это не утверждение об отсутствии всех кешей системы. Direct I/O обходит Linux page cache для SST; кеши Windows/WSL2 и NVMe-контроллера не исключаются. Служебные file-cache bytes в snapshot не являются SST data cache.
 
