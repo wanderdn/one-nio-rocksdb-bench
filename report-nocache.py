@@ -38,6 +38,7 @@ s+='''
 
 Для стенда используется seccomp=unconfined, это отключение всего seccomp-фильтра контейнера, а не готовая production-конфигурация безопасности. Для production политика io_uring и изоляции должна проверяться отдельно. Linux позволяет ограничивать создание rings через io_uring_disabled/io_uring_group: https://www.kernel.org/doc/html/v6.12/admin-guide/sysctl/kernel.html#io-uring-disabled .
 '''
+s += '\n\nОбласть исследования и ограничения выводов: [INTERPRETATION.md](INTERPRETATION.md). Одиночный Get не использует io_uring.\n'
 (p/'NOCACHE.md').write_text(s,encoding='utf-8')
 for f in ('METHOD.md','RESULTS.md'):
  t=(p/f).read_text(encoding='utf-8');marker='\n<!-- NOCACHE_APPENDIX -->\n'

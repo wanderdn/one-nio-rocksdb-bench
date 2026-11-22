@@ -26,6 +26,7 @@ for r in rows:
 d={r['label']:r for r in rows};on=d['equal-multi']['getsPerSecond']
 s+=f"\nПо throughput MultiGet с io_uring быстрее one-nio в {on/d['equal-nio']['getsPerSecond']:.2f} раза; тот же MultiGet с io_uring быстрее одиночного Get без io_uring в {on/d['equal-get']['getsPerSecond']:.2f}; тот же MultiGet с io_uring быстрее MultiGet без io_uring в {on/d['equal-multi-no-uring']['getsPerSecond']:.2f}. Это результаты конкретного стенда, одного прогона и выбранных настроек, не универсальный рейтинг библиотек.\n"
 s+='\nRSS и полезные кеши не обязаны совпадать: одинаков именно доступный полный RAM-бюджет, включающий JVM, native memory, kernel и file cache. SST RocksDB читает Direct I/O, поэтому нулевые major faults не означают отсутствие I/O. Счетчики относятся к виртуальному block device WSL2, не гарантированным обращениям к NAND.\n\nВсе counters, user/system CPU, cache misses, GC count, snapshots: [summary.json](results/equal/summary.json). Сырые логи и настройки: `results/equal/`. Старые данные `results/cold/` не входят в это сравнение.\n'
+s += '\n\n' + (p/'INTERPRETATION.md').read_text(encoding='utf-8') + '\n'
 (p/'RESULTS.md').write_text(s,encoding='utf-8')
 method='''# Методика сравнения при одинаковом общем лимите памяти
 

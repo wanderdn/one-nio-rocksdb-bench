@@ -31,3 +31,6 @@
 Сырые логи, configs, counters и summary.json: results/nocache/. Запуск: собрать Dockerfile.uring в one-nio-rocks-bench:nocache, затем ./run-nocache.ps1 и ./run-nocache-no-uring.ps1. Анализ: python analyze.py --suite nocache; python report-nocache.py.
 
 Для стенда используется seccomp=unconfined, это отключение всего seccomp-фильтра контейнера, а не готовая production-конфигурация безопасности. Для production политика io_uring и изоляции должна проверяться отдельно. Linux позволяет ограничивать создание rings через io_uring_disabled/io_uring_group: https://www.kernel.org/doc/html/v6.12/admin-guide/sysctl/kernel.html#io-uring-disabled .
+
+
+Область исследования, роль пакетирования и ограничения вывода: [INTERPRETATION.md](INTERPRETATION.md). Обычный Get в этих тестах не использует io_uring.
