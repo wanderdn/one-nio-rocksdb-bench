@@ -1,0 +1,73 @@
+CONFIG profile=nocache-rw-async directReads=true noBlockCache=true rowCache=false fillCache=false
+STAT warmup-start memory.current=164392960
+STAT warmup-start memory.stat anon 143736832;file 17448960;kernel 2523136;kernel_stack 344064;pagetables 729088;sec_pagetables 0;percpu 11968;sock 0;vmalloc 0;shmem 0;file_mapped 13320192;file_dirty 15491072;file_writeback 0;swapcached 0;anon_thp 0;file_thp 0;shmem_thp 0;inactive_anon 143720448;active_anon 12288;inactive_file 17346560;active_file 102400;unevictable 0;slab_reclaimable 730512;slab_unreclaimable 548048;slab 1278560;workingset_refault_anon 0;workingset_refault_file 0;workingset_activate_anon 0;workingset_activate_file 0;workingset_restore_anon 0;workingset_restore_file 0;workingset_nodereclaim 0;pgscan 0;pgsteal 0;pgscan_kswapd 0;pgscan_direct 0;pgscan_khugepaged 0;pgsteal_kswapd 0;pgsteal_direct 0;pgsteal_khugepaged 0;pgfault 45040;pgmajfault 9;pgrefill 0;pgactivate 25;pgdeactivate 0;pglazyfree 0;pglazyfreed 0;thp_fault_alloc 0;thp_collapse_alloc 0;
+STAT warmup-start memory.events low 0;high 0;max 0;oom 0;oom_kill 0;oom_group_kill 0;
+STAT warmup-start io.stat 8:64 rbytes=60324864 wbytes=32768 rios=5163 wios=169 dbytes=0 dios=0;
+STAT warmup-start cpu.stat usage_usec 1190177;user_usec 833124;system_usec 357053;nr_periods 0;nr_throttled 0;throttled_usec 0;nr_bursts 0;burst_usec 0;
+STAT warmup-start cpu.max max 100000;
+STAT warmup-start cpuset.cpus.effective 2;
+PROC warmup-start status Name:	java;Umask:	0022;State:	S (sleeping);Tgid:	10;Ngid:	0;Pid:	10;PPid:	7;TracerPid:	7;Uid:	0	0	0	0;Gid:	0	0	0	0;FDSize:	256;Groups:	0 ;NStgid:	10;NSpid:	10;NSpgid:	1;NSsid:	1;Kthread:	0;VmPeak:	 4036648 kB;VmSize:	 3880592 kB;VmLck:	       0 kB;VmPin:	       0 kB;VmHWM:	  175036 kB;VmRSS:	  175036 kB;RssAnon:	  139720 kB;RssFile:	   35316 kB;RssShmem:	       0 kB;VmData:	  330936 kB;VmStk:	     132 kB;VmExe:	       4 kB;VmLib:	   36488 kB;VmPTE:	     640 kB;VmSwap:	       0 kB;HugetlbPages:	       0 kB;CoreDumping:	0;THP_enabled:	1;untag_mask:	0xffffffffffffffff;Threads:	19;SigQ:	0/123313;SigPnd:	0000000000000000;ShdPnd:	0000000000000000;SigBlk:	0000000000000000;SigIgn:	0000000000000000;SigCgt:	2000000101005ccf;CapInh:	0000000000000000;CapPrm:	00000000a80425fb;CapEff:	00000000a80425fb;CapBnd:	00000000a80425fb;CapAmb:	0000000000000000;NoNewPrivs:	0;Seccomp:	2;Seccomp_filters:	1;Speculation_Store_Bypass:	thread vulnerable;SpeculationIndirectBranch:	conditional enabled;Cpus_allowed:	00000004;Cpus_allowed_list:	2;Mems_allowed:	00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001;Mems_allowed_list:	0;voluntary_ctxt_switches:	338;nonvoluntary_ctxt_switches:	0;
+PROC warmup-start io rchar: 68361184;wchar: 15473721;syscr: 6977;syscw: 1435;read_bytes: 58403840;write_bytes: 15523840;cancelled_write_bytes: 0;
+PROC warmup-start schedstat 1829585 160157 338;
+CACHE warmup-start blockBytes=0 rowBytes=0
+STAT measure-start memory.current=168325120
+STAT measure-start memory.stat anon 147591168;file 17448960;kernel 2543616;kernel_stack 344064;pagetables 745472;sec_pagetables 0;percpu 11968;sock 0;vmalloc 0;shmem 0;file_mapped 13320192;file_dirty 15491072;file_writeback 0;swapcached 0;anon_thp 0;file_thp 0;shmem_thp 0;inactive_anon 147574784;active_anon 12288;inactive_file 17346560;active_file 102400;unevictable 0;slab_reclaimable 734672;slab_unreclaimable 546688;slab 1281360;workingset_refault_anon 0;workingset_refault_file 0;workingset_activate_anon 0;workingset_activate_file 0;workingset_restore_anon 0;workingset_restore_file 0;workingset_nodereclaim 0;pgscan 0;pgsteal 0;pgscan_kswapd 0;pgscan_direct 0;pgscan_khugepaged 0;pgsteal_kswapd 0;pgsteal_direct 0;pgsteal_khugepaged 0;pgfault 45985;pgmajfault 9;pgrefill 0;pgactivate 25;pgdeactivate 0;pglazyfree 0;pglazyfreed 0;thp_fault_alloc 0;thp_collapse_alloc 0;
+STAT measure-start memory.events low 0;high 0;max 0;oom 0;oom_kill 0;oom_group_kill 0;
+STAT measure-start io.stat 8:64 rbytes=60324864 wbytes=32768 rios=5163 wios=169 dbytes=0 dios=0;
+STAT measure-start cpu.stat usage_usec 1219378;user_usec 851110;system_usec 368268;nr_periods 0;nr_throttled 0;throttled_usec 0;nr_bursts 0;burst_usec 0;
+STAT measure-start cpu.max max 100000;
+STAT measure-start cpuset.cpus.effective 2;
+PROC measure-start status Name:	java;Umask:	0022;State:	S (sleeping);Tgid:	10;Ngid:	0;Pid:	10;PPid:	7;TracerPid:	7;Uid:	0	0	0	0;Gid:	0	0	0	0;FDSize:	256;Groups:	0 ;NStgid:	10;NSpid:	10;NSpgid:	1;NSsid:	1;Kthread:	0;VmPeak:	 4036648 kB;VmSize:	 3880592 kB;VmLck:	       0 kB;VmPin:	       0 kB;VmHWM:	  178876 kB;VmRSS:	  178876 kB;RssAnon:	  143304 kB;RssFile:	   35572 kB;RssShmem:	       0 kB;VmData:	  331136 kB;VmStk:	     132 kB;VmExe:	       4 kB;VmLib:	   36488 kB;VmPTE:	     656 kB;VmSwap:	       0 kB;HugetlbPages:	       0 kB;CoreDumping:	0;THP_enabled:	1;untag_mask:	0xffffffffffffffff;Threads:	19;SigQ:	0/123313;SigPnd:	0000000000000000;ShdPnd:	0000000000000000;SigBlk:	0000000000000000;SigIgn:	0000000000000000;SigCgt:	2000000101005ccf;CapInh:	0000000000000000;CapPrm:	00000000a80425fb;CapEff:	00000000a80425fb;CapBnd:	00000000a80425fb;CapAmb:	0000000000000000;NoNewPrivs:	0;Seccomp:	2;Seccomp_filters:	1;Speculation_Store_Bypass:	thread vulnerable;SpeculationIndirectBranch:	conditional enabled;Cpus_allowed:	00000004;Cpus_allowed_list:	2;Mems_allowed:	00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001;Mems_allowed_list:	0;voluntary_ctxt_switches:	338;nonvoluntary_ctxt_switches:	0;
+PROC measure-start io rchar: 68428254;wchar: 15476737;syscr: 7021;syscw: 1452;read_bytes: 58403840;write_bytes: 15527936;cancelled_write_bytes: 0;
+PROC measure-start schedstat 1829585 160157 338;
+CACHE measure-start blockBytes=0 rowBytes=0
+RESULT {"engine":"get","mode":"uniform","profile":"nocache-rw-async","passes":2,"keysPerPass":5000,"gets":10000,"seconds":2.202812,"getsPerSecond":4539.651,"nsPerGet":220281.244,"batchP50Ms":1097.859071,"batchP95Ms":1105.199103,"batchP99Ms":1105.199103,"checksum":-1037892872766587247}
+METRICS {"cpuSeconds":0.410000,"cpuPctOneCore":18.613,"cpuNsPerGet":41000.000,"gcCount":0,"gcMillis":0,"batchP90Ms":1105.199103,"batchP999Ms":1105.199103,"batchMinMs":1096.810496,"batchMaxMs":1105.199103,"batchMeanMs":1101.004800,"batchStdDevMs":3.670016,"getSamples":625,"getP50Ns":210559,"getP90Ns":257279,"getP95Ns":274687,"getP99Ns":324351,"getP999Ns":400127,"getMaxNs":400127}
+STAT measure-end memory.current=170233856
+STAT measure-end memory.stat anon 150253568;file 17457152;kernel 2490368;kernel_stack 344064;pagetables 745472;sec_pagetables 0;percpu 11968;sock 0;vmalloc 0;shmem 0;file_mapped 13320192;file_dirty 15499264;file_writeback 0;swapcached 0;anon_thp 0;file_thp 0;shmem_thp 0;inactive_anon 150192128;active_anon 12288;inactive_file 17354752;active_file 102400;unevictable 0;slab_reclaimable 735168;slab_unreclaimable 547552;slab 1282720;workingset_refault_anon 0;workingset_refault_file 0;workingset_activate_anon 0;workingset_activate_file 0;workingset_restore_anon 0;workingset_restore_file 0;workingset_nodereclaim 0;pgscan 0;pgsteal 0;pgscan_kswapd 0;pgscan_direct 0;pgscan_khugepaged 0;pgsteal_kswapd 0;pgsteal_direct 0;pgsteal_khugepaged 0;pgfault 46637;pgmajfault 9;pgrefill 0;pgactivate 25;pgdeactivate 0;pglazyfree 0;pglazyfreed 0;thp_fault_alloc 0;thp_collapse_alloc 0;
+STAT measure-end memory.events low 0;high 0;max 0;oom 0;oom_kill 0;oom_group_kill 0;
+STAT measure-end io.stat 8:64 rbytes=107790848 wbytes=32768 rios=15163 wios=169 dbytes=0 dios=0;
+STAT measure-end cpu.stat usage_usec 1773620;user_usec 1115457;system_usec 658162;nr_periods 0;nr_throttled 0;throttled_usec 0;nr_bursts 0;burst_usec 0;
+STAT measure-end cpu.max max 100000;
+STAT measure-end cpuset.cpus.effective 2;
+PROC measure-end status Name:	java;Umask:	0022;State:	S (sleeping);Tgid:	10;Ngid:	0;Pid:	10;PPid:	7;TracerPid:	7;Uid:	0	0	0	0;Gid:	0	0	0	0;FDSize:	256;Groups:	0 ;NStgid:	10;NSpid:	10;NSpgid:	1;NSsid:	1;Kthread:	0;VmPeak:	 4036648 kB;VmSize:	 3880592 kB;VmLck:	       0 kB;VmPin:	       0 kB;VmHWM:	  181436 kB;VmRSS:	  181436 kB;RssAnon:	  145864 kB;RssFile:	   35572 kB;RssShmem:	       0 kB;VmData:	  331144 kB;VmStk:	     132 kB;VmExe:	       4 kB;VmLib:	   36488 kB;VmPTE:	     656 kB;VmSwap:	       0 kB;HugetlbPages:	       0 kB;CoreDumping:	0;THP_enabled:	1;untag_mask:	0xffffffffffffffff;Threads:	19;SigQ:	0/123313;SigPnd:	0000000000000000;ShdPnd:	0000000000000000;SigBlk:	0000000000000000;SigIgn:	0000000000000000;SigCgt:	2000000101005ccf;CapInh:	0000000000000000;CapPrm:	00000000a80425fb;CapEff:	00000000a80425fb;CapBnd:	00000000a80425fb;CapAmb:	0000000000000000;NoNewPrivs:	0;Seccomp:	2;Seccomp_filters:	1;Speculation_Store_Bypass:	thread vulnerable;SpeculationIndirectBranch:	conditional enabled;Cpus_allowed:	00000004;Cpus_allowed_list:	2;Mems_allowed:	00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001;Mems_allowed_list:	0;voluntary_ctxt_switches:	338;nonvoluntary_ctxt_switches:	0;
+PROC measure-end io rchar: 115901514;wchar: 15483629;syscr: 17052;syscw: 1536;read_bytes: 105869824;write_bytes: 15536128;cancelled_write_bytes: 0;
+PROC measure-end schedstat 1829585 160157 338;
+CACHE measure-end blockBytes=0 rowBytes=0
+ROCKS 
+** Compaction Stats [default] **
+Level    Files   Size     Score Read(GB)  Rn(GB) Rnp1(GB) Write(GB) WPreComp(GB) Wnew(GB) Moved(GB) W-Amp Rd(MB/s) Wr(MB/s) Comp(sec) CompMergeCPU(sec) Comp(cnt) Avg(sec) KeyIn KeyDrop Rblob(GB) Wblob(GB)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  L6    137/0      4.21 GB   0.0      0.0     0.0      0.0       0.0       0.0      0.0       0.0   0.0      0.0      0.0      0.00              0.00         0    0.000       0      0       0.0       0.0
+ Sum    137/0      4.21 GB   0.0      0.0     0.0      0.0       0.0       0.0      0.0       0.0   0.0      0.0      0.0      0.00              0.00         0    0.000       0      0       0.0       0.0
+ Int      0/0      0.00 KB   0.0      0.0     0.0      0.0       0.0       0.0      0.0       0.0   0.0      0.0      0.0      0.00              0.00         0    0.000       0      0       0.0       0.0
+
+** Compaction Stats [default] **
+Priority    Files   Size     Score Read(GB)  Rn(GB) Rnp1(GB) Write(GB) WPreComp(GB) Wnew(GB) Moved(GB) W-Amp Rd(MB/s) Wr(MB/s) Comp(sec) CompMergeCPU(sec) Comp(cnt) Avg(sec) KeyIn KeyDrop Rblob(GB) Wblob(GB)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Blob file count: 0, total size: 0.0 GB, garbage size: 0.0 GB, space amp: 0.0
+
+Uptime(secs): 3.7 total, 3.5 interval
+Flush(GB): cumulative 0.000, interval 0.000
+AddFile(GB): cumulative 0.000, interval 0.000
+AddFile(Total Files): cumulative 0, interval 0
+AddFile(L0 Files): cumulative 0, interval 0
+AddFile(Keys): cumulative 0, interval 0
+Cumulative compaction: 0.00 GB write, 0.00 MB/s write, 0.00 GB read, 0.00 MB/s read, 0.0 seconds
+Interval compaction: 0.00 GB write, 0.00 MB/s write, 0.00 GB read, 0.00 MB/s read, 0.0 seconds
+Estimated pending compaction bytes: 0
+Write Stall (count): cf-l0-file-count-limit-delays-with-ongoing-compaction: 0, cf-l0-file-count-limit-stops-with-ongoing-compaction: 0, l0-file-count-limit-delays: 0, l0-file-count-limit-stops: 0, memtable-limit-delays: 0, memtable-limit-stops: 0, pending-compaction-bytes-delays: 0, pending-compaction-bytes-stops: 0, total-delays: 0, total-stops: 0
+
+** File Read Latency Histogram By Level [default] **
+
+** DB Stats **
+Uptime(secs): 3.7 total, 3.5 interval
+Cumulative writes: 0 writes, 0 keys, 0 commit groups, 0.0 writes per commit group, ingest: 0.00 GB, 0.00 MB/s
+Cumulative WAL: 0 writes, 0 syncs, 0.00 writes per sync, written: 0.00 GB, 0.00 MB/s
+Cumulative stall: 00:00:0.000 H:M:S, 0.0 percent
+Interval writes: 0 writes, 0 keys, 0 commit groups, 0.0 writes per commit group, ingest: 0.00 MB, 0.00 MB/s
+Interval WAL: 0 writes, 0 syncs, 0.00 writes per sync, written: 0.00 GB, 0.00 MB/s
+Interval stall: 00:00:0.000 H:M:S, 0.0 percent
+Write Stall (count): write-buffer-manager-limit-stops: 0
+
