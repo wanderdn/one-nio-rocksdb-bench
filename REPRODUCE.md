@@ -24,3 +24,4 @@ Skip dataset creation when the volume already exists. Do not run the suites conc
 **Security:** the experimental runner uses `seccomp=unconfined` to expose io_uring. This disables the container seccomp filter and is not a recommended production deployment. The native library is compiled with `PORTABLE=0` and should be rebuilt on another CPU. Tokens and device records are synthetic. No FCM network requests are performed.
 
 All published results are one full run per configuration on one WSL2/VHDX host. They do not establish a universal ordering between libraries, or statistical significance for small differences. Historical unequal-resource experiments are excluded from the public comparison.
+Прогон на 4 CPU и 4 потоках описан в [PARALLEL4.md](PARALLEL4.md).

@@ -6,7 +6,7 @@ param(
     [switch]$SkipPrepare,
     [switch]$SkipBuild,
     [switch]$ResumePilots,
-    [switch]$FunctionsOnly
+    [string]$CpuSet = "2", [int]$Threads = 1, [int]$MultiSize = 5000, [switch]$FunctionsOnly
 )
 $ErrorActionPreference = 'Stop'
 Set-Location $PSScriptRoot
@@ -28,7 +28,7 @@ function Invoke-Bench([string]$Label,[string]$Engine,[string]$Mode,[string]$Prof
     $logPath = Join-Path $resultDir "$Label.log"
     # Start large for one-nio's pointer relocation; lower before warmup or measurement.
     $statsValue = if($Stats) { '1' } else { '0' }
-    docker run -d --name $name --memory=12g --memory-swap=12g --cpuset-cpus=2 --security-opt seccomp=unconfined -e BENCH_GATE=/tmp/bench-go -e "BENCH_CACHE_BYTES=$NativeCacheBytes" -e "BENCH_STATS=$statsValue" -e "LD_PRELOAD=$Preload" --mount "type=volume,src=$Volume,dst=/data" $Image run /data $Engine $Mode $Profile $Rounds $WarmRounds | Out-Null
+    docker run -d --name $name --memory=12g --memory-swap=12g --cpuset-cpus=$CpuSet -e "BENCH_THREADS=$Threads" -e "BENCH_MULTI_SIZE=$MultiSize" --security-opt seccomp=unconfined -e BENCH_GATE=/tmp/bench-go -e "BENCH_CACHE_BYTES=$NativeCacheBytes" -e "BENCH_STATS=$statsValue" -e "LD_PRELOAD=$Preload" --mount "type=volume,src=$Volume,dst=/data" $Image run /data $Engine $Mode $Profile $Rounds $WarmRounds | Out-Null
     Check-Exit "start $Label"
     $ready = $false
     while (!$ready) {

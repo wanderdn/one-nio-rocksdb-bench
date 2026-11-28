@@ -1,0 +1,4 @@
+FROM one-nio-rocks-bench:equal
+COPY src /project/src
+RUN mvn -q -DskipTests package
+RUN jar uf /project/target/one-nio-rocksdb-bench-1.0.jar -C /opt/rocks-native librocksdbjni-linux64.so

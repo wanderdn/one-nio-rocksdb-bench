@@ -8,6 +8,7 @@ import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.util.*;
+import java.util.concurrent.*;
 import java.io.RandomAccessFile;
 import java.lang.management.ManagementFactory;
 
@@ -194,6 +195,12 @@ public final class Bench {
         evict(dir);
         Nio n=engine.equals("nio") ? new Nio(dir,count) : null;
         Rocks r=n==null ? new Rocks(dir,false,profile,Integer.parseInt(m.getProperty("blockSize"))) : null;
+        int threads=Integer.parseInt(System.getenv().getOrDefault("BENCH_THREADS","1"));
+        int multiSize=Integer.parseInt(System.getenv().getOrDefault("BENCH_MULTI_SIZE","5000"));
+        ExecutorService workers=threads>1?Executors.newFixedThreadPool(threads):null;
+        Histogram[] requestHist=new Histogram[threads];
+        for(int w=0;w<threads;w++)requestHist[w]=new Histogram(3);
+        System.out.println("CONCURRENCY threads="+threads+" multiKeysPerRequest="+multiSize);
         try {
             if(n!=null)((ReadOnlyLongMap)n.map).sync();
             String gate=System.getenv("BENCH_GATE");
@@ -209,7 +216,7 @@ public final class Bench {
             long checksum=0; Histogram hist=new Histogram(3); Histogram individual=new Histogram(3);
             var os=(com.sun.management.OperatingSystemMXBean)ManagementFactory.getOperatingSystemMXBean();
             for(int phase=0;phase<2;phase++) {
-                hist.reset(); individual.reset();
+                hist.reset(); individual.reset(); for(Histogram h:requestHist)h.reset();
                 checksum=0;
                 // Uniform warmup and measurement must never replay the same prefix.
                 Trace trace=new Trace(count,size,mode.equals("uniform") && phase==0?SEED^0x12345678abcdefL:SEED);
@@ -221,7 +228,33 @@ public final class Bench {
                 for(int pass=0;pass<rounds;pass++) {
                     long t=System.nanoTime();
                     if(mode.equals("uniform"))trace.renew(count);else trace.shuffle();
-                    if(engine.equals("multi")) {
+                    if(workers!=null) {
+                        ArrayList<Callable<Long>> tasks=new ArrayList<>();
+                        final int passIndex=pass;
+                        for(int w=0;w<threads;w++) {
+                            final int worker=w;
+                            tasks.add(()-> {
+                                long sum=0;
+                                if(engine.equals("multi")) {
+                                    for(int first=worker*multiSize;first<size;first+=threads*multiSize) {
+                                        long begin=System.nanoTime();
+                                        List<byte[]> values=r.db.multiGetAsList(r.reads,trace.keys.subList(first,Math.min(size,first+multiSize)));
+                                        for(byte[] value:values)sum+=consume(value);
+                                        requestHist[worker].recordValue(System.nanoTime()-begin);
+                                    }
+                                } else {
+                                    for(int i=worker*size/threads;i<(worker+1)*size/threads;i++) {
+                                        boolean sample=(((long)passIndex*size+i)&15)==0;
+                                        long begin=sample?System.nanoTime():0;
+                                        sum+=consume(n!=null?n.map.get(trace.boxed[i]):r.db.get(r.reads,trace.keys.get(i)));
+                                        if(sample)requestHist[worker].recordValue(System.nanoTime()-begin);
+                                    }
+                                }
+                                return sum;
+                            });
+                        }
+                        for(Future<Long> future:workers.invokeAll(tasks))checksum+=future.get();
+                    } else if(engine.equals("multi")) {
                         List<byte[]> values=r.db.multiGetAsList(r.reads,trace.keys);
                         for(byte[] v:values)checksum+=consume(v);
                     } else {
@@ -242,6 +275,8 @@ public final class Bench {
                 long cpuElapsed=os.getProcessCpuTime()-cpuStart;
                 if(phase==1) {
                     blackhole=checksum;
+                    if(workers!=null)for(Histogram h:requestHist)individual.add(h);
+                    System.out.printf(Locale.ROOT,"REQUEST_METRICS threads=%d maxKeysPerRequest=%d samples=%d p50Us=%.3f p95Us=%.3f p99Us=%.3f p999Us=%.3f maxUs=%.3f%n",threads,engine.equals("multi")?multiSize:1,individual.getTotalCount(),individual.getValueAtPercentile(50)/1e3,individual.getValueAtPercentile(95)/1e3,individual.getValueAtPercentile(99)/1e3,individual.getValueAtPercentile(99.9)/1e3,individual.getMaxValue()/1e3);
                     System.out.printf(Locale.ROOT,"RESULT {\"engine\":\"%s\",\"mode\":\"%s\",\"profile\":\"%s\",\"passes\":%d,\"keysPerPass\":%d,\"gets\":%d,\"seconds\":%.6f,\"getsPerSecond\":%.3f,\"nsPerGet\":%.3f,\"batchP50Ms\":%.6f,\"batchP95Ms\":%.6f,\"batchP99Ms\":%.6f,\"checksum\":%d}%n",engine,mode,profile,passes,size,(long)passes*size,elapsed/1e9,(long)passes*size/(elapsed/1e9),elapsed/(double)((long)passes*size),hist.getValueAtPercentile(50)/1e6,hist.getValueAtPercentile(95)/1e6,hist.getValueAtPercentile(99)/1e6,checksum);
                     System.out.printf(Locale.ROOT,"METRICS {\"cpuSeconds\":%.6f,\"cpuPctOneCore\":%.3f,\"cpuNsPerGet\":%.3f,\"gcCount\":%d,\"gcMillis\":%d,\"batchP90Ms\":%.6f,\"batchP999Ms\":%.6f,\"batchMinMs\":%.6f,\"batchMaxMs\":%.6f,\"batchMeanMs\":%.6f,\"batchStdDevMs\":%.6f,\"getSamples\":%d,\"getP50Ns\":%d,\"getP90Ns\":%d,\"getP95Ns\":%d,\"getP99Ns\":%d,\"getP999Ns\":%d,\"getMaxNs\":%d}%n",cpuElapsed/1e9,100.0*cpuElapsed/elapsed,cpuElapsed/(double)((long)passes*size),gcCount()-gcStart,gcMillis()-gcTimeStart,hist.getValueAtPercentile(90)/1e6,hist.getValueAtPercentile(99.9)/1e6,hist.getMinValue()/1e6,hist.getMaxValue()/1e6,hist.getMean()/1e6,hist.getStdDeviation()/1e6,individual.getTotalCount(),individual.getValueAtPercentile(50),individual.getValueAtPercentile(90),individual.getValueAtPercentile(95),individual.getValueAtPercentile(99),individual.getValueAtPercentile(99.9),individual.getMaxValue());
                     snapshot("measure-end");
@@ -249,7 +284,7 @@ public final class Bench {
                     if(r!=null) { System.out.println("ROCKS "+r.db.getProperty("rocksdb.stats")); }
                 }
             }
-        } finally { if(n!=null)n.close();if(r!=null)r.close(); }
+        } finally { if(workers!=null)workers.shutdownNow();if(n!=null)n.close();if(r!=null)r.close(); }
     }
     static void selftest(Path dir) throws Exception {
         if(payload(0).length<=payload(1).length)throw new AssertionError("device distribution");
