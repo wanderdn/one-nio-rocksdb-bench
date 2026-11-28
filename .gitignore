@@ -22,3 +22,4 @@ __pycache__/
 
 /results/**/*.resources.json.tmp
 !/results/parallel4/
+!/results/repeated4/

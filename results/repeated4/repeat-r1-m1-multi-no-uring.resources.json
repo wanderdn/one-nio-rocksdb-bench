@@ -1,0 +1,18 @@
+{
+  "HostConfig": {
+    "Memory": 1073741824,
+    "MemorySwap": 1073741824,
+    "CpusetCpus": "2-5"
+  },
+  "Config": {
+    "Image": "one-nio-rocks-bench:parallel4",
+    "Env": [
+      "BENCH_THREADS=4",
+      "BENCH_MULTI_SIZE=32",
+      "BENCH_GATE=/tmp/bench-go",
+      "BENCH_CACHE_BYTES=805306368",
+      "BENCH_STATS=1",
+      "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/liburing.so.2"
+    ]
+  }
+}

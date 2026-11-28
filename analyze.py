@@ -6,7 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 parser = argparse.ArgumentParser()
-parser.add_argument('--suite', choices=('cold', 'hot', 'equal', 'nocache', 'parallel4'), default='equal')
+parser.add_argument('--suite', choices=('cold', 'hot', 'equal', 'nocache', 'parallel4', 'repeated4'), default='equal')
 args = parser.parse_args()
 RESULTS = ROOT / 'results' / (args.suite if args.suite != 'hot' else '')
 
@@ -38,7 +38,7 @@ def difference(end, start):
 
 rows = []
 for path in sorted(RESULTS.glob('*.log')):
-    if not path.stem.startswith(('full-', 'pilot-', 'uniform-', 'diagnostic-', 'cold-', 'equal-', 'nocache-', 'parallel4-')):
+    if not path.stem.startswith(('full-', 'pilot-', 'uniform-', 'diagnostic-', 'cold-', 'equal-', 'nocache-', 'parallel4-', 'repeat-')):
         continue
     text = path.read_text(encoding='utf-8-sig', errors='replace')
     raw = line(text, 'RESULT ')
@@ -47,7 +47,7 @@ for path in sorted(RESULTS.glob('*.log')):
     r = json.loads(raw)
     r.update(json.loads(line(text, 'METRICS ') or '{}'))
     r['label'] = path.stem
-    if args.suite=='parallel4':
+    if args.suite in ('parallel4','repeated4'):
         r['cpuPctFourCores'] = r['cpuPctOneCore'] / 4
         r['requestMetrics'] = {k: float(v) for k,v in re.findall(r'(\w+)=([\d.]+)', line(text, 'REQUEST_METRICS '))}
     snapshots = {}

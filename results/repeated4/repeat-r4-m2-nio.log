@@ -1,0 +1,88 @@
+CONCURRENCY threads=4 multiKeysPerRequest=32
+[main] INFO one.nio.mem.OffheapMap - Relocating Bench$ReadOnlyLongMap...
+[main] INFO one.nio.mem.OffheapMap - Bench$ReadOnlyLongMap initialized: capacity = 10590480/21233664, memory = 4767/7286 MB
+[main] INFO one.nio.mem.OffheapMap - Loading serialization schema for Bench$ReadOnlyLongMap...
+[main] INFO one.nio.mem.OffheapMap - Loaded 0 serializers for Bench$ReadOnlyLongMap
+READY_FOR_MEMORY_LIMIT
+STAT warmup-start memory.current=1664942080
+STAT warmup-start memory.stat anon 94113792;file 1514274816;kernel 55738368;kernel_stack 229376;pagetables 10653696;sec_pagetables 0;percpu 10880;sock 0;vmalloc 0;shmem 0;file_mapped 1512873984;file_dirty 12288;file_writeback 0;swapcached 0;anon_thp 0;file_thp 0;shmem_thp 0;inactive_anon 93986816;active_anon 4096;inactive_file 1514176512;active_file 98304;unevictable 0;slab_reclaimable 44442040;slab_unreclaimable 354104;slab 44796144;workingset_refault_anon 0;workingset_refault_file 5071;workingset_activate_anon 0;workingset_activate_file 0;workingset_restore_anon 0;workingset_restore_file 0;workingset_nodereclaim 0;pgscan 897778;pgsteal 897747;pgscan_kswapd 0;pgscan_direct 897778;pgscan_khugepaged 0;pgsteal_kswapd 0;pgsteal_direct 897747;pgsteal_khugepaged 0;pgfault 1708227;pgmajfault 55803;pgrefill 0;pgactivate 23;pgdeactivate 0;pglazyfree 0;pglazyfreed 0;thp_fault_alloc 0;thp_collapse_alloc 0;
+STAT warmup-start memory.events low 0;high 0;max 0;oom 0;oom_kill 0;oom_group_kill 0;
+STAT warmup-start io.stat 8:64 rbytes=5191200768 wbytes=6215634944 rios=62426 wios=603921 dbytes=0 dios=0;
+STAT warmup-start cpu.stat usage_usec 8423694;user_usec 1533794;system_usec 6889900;nr_periods 0;nr_throttled 0;throttled_usec 0;nr_bursts 0;burst_usec 0;
+STAT warmup-start cpu.max max 100000;
+STAT warmup-start cpuset.cpus.effective 2-5;
+PROC warmup-start status Name:	java;Umask:	0022;State:	S (sleeping);Tgid:	1;Ngid:	0;Pid:	1;PPid:	0;TracerPid:	0;Uid:	0	0	0	0;Gid:	0	0	0	0;FDSize:	64;Groups:	0 ;NStgid:	1;NSpid:	1;NSpgid:	1;NSsid:	1;Kthread:	0;VmPeak:	10185356 kB;VmSize:	10173944 kB;VmLck:	       0 kB;VmPin:	       0 kB;VmHWM:	 5112680 kB;VmRSS:	 1590744 kB;RssAnon:	   91608 kB;RssFile:	 1499136 kB;RssShmem:	       0 kB;VmData:	  245084 kB;VmStk:	     132 kB;VmExe:	       4 kB;VmLib:	   24436 kB;VmPTE:	   10420 kB;VmSwap:	       0 kB;HugetlbPages:	       0 kB;CoreDumping:	0;THP_enabled:	1;untag_mask:	0xffffffffffffffff;Threads:	14;SigQ:	0/123313;SigPnd:	0000000000000000;ShdPnd:	0000000000000000;SigBlk:	0000000000000000;SigIgn:	0000000000000000;SigCgt:	2000000101005ccf;CapInh:	0000000000000000;CapPrm:	00000000a80425fb;CapEff:	00000000a80425fb;CapBnd:	00000000a80425fb;CapAmb:	0000000000000000;NoNewPrivs:	0;Seccomp:	2;Seccomp_filters:	1;Speculation_Store_Bypass:	thread vulnerable;SpeculationIndirectBranch:	conditional enabled;Cpus_allowed:	0000003c;Cpus_allowed_list:	2-5;Mems_allowed:	00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001;Mems_allowed_list:	0;voluntary_ctxt_switches:	15;nonvoluntary_ctxt_switches:	0;
+PROC warmup-start io rchar: 4325395;wchar: 218579;syscr: 1114;syscw: 31;read_bytes: 5191200768;write_bytes: 6261788672;cancelled_write_bytes: 0;
+PROC warmup-start schedstat 6636566 5050 15;
+PROGRESS nio phase=0 passes=25/200 gets=125000 seconds=4.507 getsPerSecond=27733.1
+PROGRESS nio phase=0 passes=50/200 gets=250000 seconds=8.815 getsPerSecond=28360.9
+PROGRESS nio phase=0 passes=75/200 gets=375000 seconds=13.110 getsPerSecond=28603.5
+PROGRESS nio phase=0 passes=100/200 gets=500000 seconds=17.276 getsPerSecond=28942.5
+PROGRESS nio phase=0 passes=125/200 gets=625000 seconds=22.706 getsPerSecond=27525.9
+PROGRESS nio phase=0 passes=150/200 gets=750000 seconds=27.056 getsPerSecond=27720.0
+PROGRESS nio phase=0 passes=175/200 gets=875000 seconds=31.241 getsPerSecond=28007.9
+PROGRESS nio phase=0 passes=200/200 gets=1000000 seconds=35.342 getsPerSecond=28295.2
+STAT measure-start memory.current=2147373056
+STAT measure-start memory.stat anon 102985728;file 2020835328;kernel 23408640;kernel_stack 278528;pagetables 10694656;sec_pagetables 0;percpu 10880;sock 0;vmalloc 0;shmem 0;file_mapped 2020806656;file_dirty 12288;file_writeback 0;swapcached 0;anon_thp 0;file_thp 0;shmem_thp 0;inactive_anon 102977536;active_anon 4096;inactive_file 2019799040;active_file 983040;unevictable 0;slab_reclaimable 11991368;slab_unreclaimable 392680;slab 12384048;workingset_refault_anon 0;workingset_refault_file 900932;workingset_activate_anon 0;workingset_activate_file 213;workingset_restore_anon 0;workingset_restore_file 0;workingset_nodereclaim 0;pgscan 1669970;pgsteal 1669936;pgscan_kswapd 0;pgscan_direct 1669970;pgscan_khugepaged 0;pgsteal_kswapd 0;pgsteal_direct 1669936;pgsteal_khugepaged 0;pgfault 2606274;pgmajfault 951665;pgrefill 0;pgactivate 26;pgdeactivate 0;pglazyfree 0;pglazyfreed 0;thp_fault_alloc 0;thp_collapse_alloc 0;
+STAT measure-start memory.events low 0;high 0;max 24130;oom 0;oom_kill 0;oom_group_kill 0;
+STAT measure-start io.stat 8:64 rbytes=8860647424 wbytes=6215647232 rios=958287 wios=603922 dbytes=0 dios=0;
+STAT measure-start cpu.stat usage_usec 34922686;user_usec 4307690;system_usec 30614995;nr_periods 0;nr_throttled 0;throttled_usec 0;nr_bursts 0;burst_usec 0;
+STAT measure-start cpu.max max 100000;
+STAT measure-start cpuset.cpus.effective 2-5;
+PROC measure-start status Name:	java;Umask:	0022;State:	S (sleeping);Tgid:	1;Ngid:	0;Pid:	1;PPid:	0;TracerPid:	0;Uid:	0	0	0	0;Gid:	0	0	0	0;FDSize:	64;Groups:	0 ;NStgid:	1;NSpid:	1;NSpgid:	1;NSsid:	1;Kthread:	0;VmPeak:	10440184 kB;VmSize:	10440184 kB;VmLck:	       0 kB;VmPin:	       0 kB;VmHWM:	 5112680 kB;VmRSS:	 2095576 kB;RssAnon:	   99800 kB;RssFile:	 1995776 kB;RssShmem:	       0 kB;VmData:	  249964 kB;VmStk:	     132 kB;VmExe:	       4 kB;VmLib:	   24436 kB;VmPTE:	   10460 kB;VmSwap:	       0 kB;HugetlbPages:	       0 kB;CoreDumping:	0;THP_enabled:	1;untag_mask:	0xffffffffffffffff;Threads:	17;SigQ:	0/123313;SigPnd:	0000000000000000;ShdPnd:	0000000000000000;SigBlk:	0000000000000000;SigIgn:	0000000000000000;SigCgt:	2000000101005ccf;CapInh:	0000000000000000;CapPrm:	00000000a80425fb;CapEff:	00000000a80425fb;CapBnd:	00000000a80425fb;CapAmb:	0000000000000000;NoNewPrivs:	0;Seccomp:	2;Seccomp_filters:	1;Speculation_Store_Bypass:	thread vulnerable;SpeculationIndirectBranch:	conditional enabled;Cpus_allowed:	0000003c;Cpus_allowed_list:	2-5;Mems_allowed:	00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001;Mems_allowed_list:	0;voluntary_ctxt_switches:	15;nonvoluntary_ctxt_switches:	0;
+PROC measure-start io rchar: 4419504;wchar: 222289;syscr: 1195;syscw: 161;read_bytes: 8860647424;write_bytes: 6261800960;cancelled_write_bytes: 0;
+PROC measure-start schedstat 6636566 5050 15;
+PROGRESS nio phase=1 passes=25/1000 gets=125000 seconds=4.917 getsPerSecond=25420.1
+PROGRESS nio phase=1 passes=50/1000 gets=250000 seconds=9.778 getsPerSecond=25568.2
+PROGRESS nio phase=1 passes=75/1000 gets=375000 seconds=14.113 getsPerSecond=26572.0
+PROGRESS nio phase=1 passes=100/1000 gets=500000 seconds=18.285 getsPerSecond=27345.5
+PROGRESS nio phase=1 passes=125/1000 gets=625000 seconds=22.574 getsPerSecond=27686.2
+PROGRESS nio phase=1 passes=150/1000 gets=750000 seconds=27.704 getsPerSecond=27071.4
+PROGRESS nio phase=1 passes=175/1000 gets=875000 seconds=32.326 getsPerSecond=27067.6
+PROGRESS nio phase=1 passes=200/1000 gets=1000000 seconds=36.666 getsPerSecond=27273.6
+PROGRESS nio phase=1 passes=225/1000 gets=1125000 seconds=40.949 getsPerSecond=27473.1
+PROGRESS nio phase=1 passes=250/1000 gets=1250000 seconds=45.634 getsPerSecond=27392.0
+PROGRESS nio phase=1 passes=275/1000 gets=1375000 seconds=50.490 getsPerSecond=27233.0
+PROGRESS nio phase=1 passes=300/1000 gets=1500000 seconds=55.109 getsPerSecond=27218.8
+PROGRESS nio phase=1 passes=325/1000 gets=1625000 seconds=59.331 getsPerSecond=27388.9
+PROGRESS nio phase=1 passes=350/1000 gets=1750000 seconds=63.602 getsPerSecond=27514.8
+PROGRESS nio phase=1 passes=375/1000 gets=1875000 seconds=68.356 getsPerSecond=27429.8
+PROGRESS nio phase=1 passes=400/1000 gets=2000000 seconds=73.087 getsPerSecond=27364.5
+PROGRESS nio phase=1 passes=425/1000 gets=2125000 seconds=77.415 getsPerSecond=27449.4
+PROGRESS nio phase=1 passes=450/1000 gets=2250000 seconds=81.618 getsPerSecond=27567.4
+PROGRESS nio phase=1 passes=475/1000 gets=2375000 seconds=86.020 getsPerSecond=27609.9
+PROGRESS nio phase=1 passes=500/1000 gets=2500000 seconds=90.625 getsPerSecond=27586.3
+PROGRESS nio phase=1 passes=525/1000 gets=2625000 seconds=95.099 getsPerSecond=27602.7
+PROGRESS nio phase=1 passes=550/1000 gets=2750000 seconds=99.498 getsPerSecond=27638.8
+PROGRESS nio phase=1 passes=575/1000 gets=2875000 seconds=103.876 getsPerSecond=27677.3
+PROGRESS nio phase=1 passes=600/1000 gets=3000000 seconds=108.382 getsPerSecond=27679.8
+PROGRESS nio phase=1 passes=625/1000 gets=3125000 seconds=112.885 getsPerSecond=27683.1
+PROGRESS nio phase=1 passes=650/1000 gets=3250000 seconds=117.349 getsPerSecond=27695.2
+PROGRESS nio phase=1 passes=675/1000 gets=3375000 seconds=121.655 getsPerSecond=27742.4
+PROGRESS nio phase=1 passes=700/1000 gets=3500000 seconds=126.247 getsPerSecond=27723.4
+PROGRESS nio phase=1 passes=725/1000 gets=3625000 seconds=130.734 getsPerSecond=27728.1
+PROGRESS nio phase=1 passes=750/1000 gets=3750000 seconds=135.261 getsPerSecond=27724.2
+PROGRESS nio phase=1 passes=775/1000 gets=3875000 seconds=139.551 getsPerSecond=27767.7
+PROGRESS nio phase=1 passes=800/1000 gets=4000000 seconds=144.111 getsPerSecond=27756.5
+PROGRESS nio phase=1 passes=825/1000 gets=4125000 seconds=148.655 getsPerSecond=27748.8
+PROGRESS nio phase=1 passes=850/1000 gets=4250000 seconds=153.145 getsPerSecond=27751.4
+PROGRESS nio phase=1 passes=875/1000 gets=4375000 seconds=157.584 getsPerSecond=27763.0
+PROGRESS nio phase=1 passes=900/1000 gets=4500000 seconds=161.936 getsPerSecond=27788.7
+PROGRESS nio phase=1 passes=925/1000 gets=4625000 seconds=166.465 getsPerSecond=27783.6
+PROGRESS nio phase=1 passes=950/1000 gets=4750000 seconds=171.023 getsPerSecond=27774.1
+PROGRESS nio phase=1 passes=975/1000 gets=4875000 seconds=175.478 getsPerSecond=27781.3
+PROGRESS nio phase=1 passes=1000/1000 gets=5000000 seconds=179.845 getsPerSecond=27801.7
+REQUEST_METRICS threads=4 maxKeysPerRequest=1 samples=312500 p50Us=148.351 p95Us=331.007 p99Us=472.319 p999Us=635.903 maxUs=3020.799
+RESULT {"engine":"nio","mode":"uniform","profile":"mmap","passes":1000,"keysPerPass":5000,"gets":5000000,"seconds":179.845445,"getsPerSecond":27801.649,"nsPerGet":35969.089,"batchP50Ms":178.651135,"batchP95Ms":201.719807,"batchP99Ms":217.186303,"checksum":-8131224688047484273}
+METRICS {"cpuSeconds":135.980000,"cpuPctOneCore":75.609,"cpuNsPerGet":27196.000,"gcCount":63,"gcMillis":15,"batchP90Ms":192.413695,"batchP999Ms":235.667455,"batchMinMs":158.597120,"batchMaxMs":244.318207,"batchMeanMs":179.827245,"batchStdDevMs":11.270466,"getSamples":312500,"getP50Ns":148351,"getP90Ns":304383,"getP95Ns":331007,"getP99Ns":472319,"getP999Ns":635903,"getMaxNs":3020799}
+STAT measure-end memory.current=2147430400
+[main] INFO one.nio.mem.OffheapMap - Bench$ReadOnlyLongMap gracefully closed
+STAT measure-end memory.stat anon 104624128;file 2019233792;kernel 23416832;kernel_stack 278528;pagetables 10698752;sec_pagetables 0;percpu 10880;sock 0;vmalloc 0;shmem 0;file_mapped 2019213312;file_dirty 12288;file_writeback 0;swapcached 0;anon_thp 0;file_thp 0;shmem_thp 0;inactive_anon 104587264;active_anon 4096;inactive_file 1901686784;active_file 117485568;unevictable 0;slab_reclaimable 11982248;slab_unreclaimable 396080;slab 12378328;workingset_refault_anon 0;workingset_refault_file 4741772;workingset_activate_anon 0;workingset_activate_file 154587;workingset_restore_anon 0;workingset_restore_file 24327;workingset_nodereclaim 0;pgscan 6182322;pgsteal 6182276;pgscan_kswapd 0;pgscan_direct 6182322;pgscan_khugepaged 0;pgsteal_kswapd 0;pgsteal_direct 6182276;pgsteal_khugepaged 0;pgfault 7118696;pgmajfault 5463611;pgrefill 125942;pgactivate 38;pgdeactivate 125942;pglazyfree 0;pglazyfreed 0;thp_fault_alloc 0;thp_collapse_alloc 0;
+STAT measure-end memory.events low 0;high 0;max 165142;oom 0;oom_kill 0;oom_group_kill 0;
+STAT measure-end io.stat 8:64 rbytes=27341590528 wbytes=6215794688 rios=5470233 wios=603934 dbytes=0 dios=0;
+STAT measure-end cpu.stat usage_usec 170919284;user_usec 15910146;system_usec 155009137;nr_periods 0;nr_throttled 0;throttled_usec 0;nr_bursts 0;burst_usec 0;
+STAT measure-end cpu.max max 100000;
+STAT measure-end cpuset.cpus.effective 2-5;
+PROC measure-end status Name:	java;Umask:	0022;State:	S (sleeping);Tgid:	1;Ngid:	0;Pid:	1;PPid:	0;TracerPid:	0;Uid:	0	0	0	0;Gid:	0	0	0	0;FDSize:	64;Groups:	0 ;NStgid:	1;NSpid:	1;NSpgid:	1;NSsid:	1;Kthread:	0;VmPeak:	10440184 kB;VmSize:	10440184 kB;VmLck:	       0 kB;VmPin:	       0 kB;VmHWM:	 5112680 kB;VmRSS:	 2095832 kB;RssAnon:	  101592 kB;RssFile:	 1994240 kB;RssShmem:	       0 kB;VmData:	  250092 kB;VmStk:	     132 kB;VmExe:	       4 kB;VmLib:	   24436 kB;VmPTE:	   10464 kB;VmSwap:	       0 kB;HugetlbPages:	       0 kB;CoreDumping:	0;THP_enabled:	1;untag_mask:	0xffffffffffffffff;Threads:	17;SigQ:	0/123313;SigPnd:	0000000000000000;ShdPnd:	0000000000000000;SigBlk:	0000000000000000;SigIgn:	0000000000000000;SigCgt:	2000000101005ccf;CapInh:	0000000000000000;CapPrm:	00000000a80425fb;CapEff:	00000000a80425fb;CapBnd:	00000000a80425fb;CapAmb:	0000000000000000;NoNewPrivs:	0;Seccomp:	2;Seccomp_filters:	1;Speculation_Store_Bypass:	thread vulnerable;SpeculationIndirectBranch:	conditional enabled;Cpus_allowed:	0000003c;Cpus_allowed_list:	2-5;Mems_allowed:	00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001;Mems_allowed_list:	0;voluntary_ctxt_switches:	15;nonvoluntary_ctxt_switches:	0;
+PROC measure-end io rchar: 4428290;wchar: 229622;syscr: 1251;syscw: 854;read_bytes: 27341590528;write_bytes: 6261948416;cancelled_write_bytes: 0;
+PROC measure-end schedstat 6636566 5050 15;
